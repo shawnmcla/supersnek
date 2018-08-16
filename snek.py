@@ -2,11 +2,14 @@
 > S U P E R S N E K V1.0
 > Description: A wee little console based Snake game
 > Author: Shawn McLaughlin <shawnmcdev@gmail.com>
-> Source: <<REPO LINK HERE>>
+> Source: https://github.com/shawnmcla/supersnek
 > License: MIT
 """
 
-import colorama, time, sys, os, random
+import time
+import sys
+import os
+import random
 from msvcrt import getch, kbhit
 from collections import deque
 
@@ -37,8 +40,6 @@ DIRECTION_MAP = {
     LEFT_ARROW: LEFT
 }
 
-colorama.init()
-
 SYMBOLS = {
     "SNAKE": "o",
     "SNAKE_HEAD": "O",
@@ -46,16 +47,7 @@ SYMBOLS = {
     "EMPTY": " "
 }
 
-SYMBOLS_COLOR = {
-    "SNAKE": colorama.Fore.LIGHTGREEN_EX + "o" + colorama.Fore.RESET,
-    "SNAKE_HEAD": colorama.Fore.LIGHTYELLOW_EX + "O" + colorama.Fore.RESET,
-    "APPLE": colorama.Fore.LIGHTRED_EX + "@" + colorama.Fore.RESET,
-    "EMPTY": " "
-}
-
 DEATH_MESSAGE = "Oh no! Snek is dead (x_x)"
-DEATH_MESSAGE_COLOR = f"Oh no! Snek is {colorama.Fore.LIGHTRED_EX}dead\
-{colorama.Fore.RESET} (x_x)"
 
 BANNER = """\
    _____ _    _ _____  ______ _____   _____ _   _ ______ _  __ 
@@ -299,7 +291,7 @@ class Board:
         """Add an apple to the board in one of the vacant quadrants."""
 
         snake_quadrant = self.get_quadrant(snake_head)
-        possible_quadrants = [0,1,2,3]
+        possible_quadrants = [0, 1, 2, 3]
         possible_quadrants.remove(snake_quadrant)
         apple_quadrant = self.quadrants[random.choice(possible_quadrants)]
         apple_x = random.randint(apple_quadrant[0][0], apple_quadrant[1][0])
@@ -345,8 +337,19 @@ def main():
     global SYMBOLS
     global DEATH_MESSAGE
     if COLOR_ENABLED:
-        SYMBOLS = SYMBOLS_COLOR
-        DEATH_MESSAGE = DEATH_MESSAGE_COLOR
+        import colorama
+        colorama.init()
+
+        SYMBOLS = {
+            "SNAKE": colorama.Fore.LIGHTGREEN_EX + "o" + colorama.Fore.RESET,
+            "SNAKE_HEAD": colorama.Fore.LIGHTYELLOW_EX + "O" +
+            colorama.Fore.RESET,
+            "APPLE": colorama.Fore.LIGHTRED_EX + "@" + colorama.Fore.RESET,
+            "EMPTY": " "
+        }
+        DEATH_MESSAGE = f"Oh no! Snek is {colorama.Fore.LIGHTRED_EX}dead"\
+            f"{colorama.Fore.RESET} (x_x)"
+
     game = Game()
 
 
