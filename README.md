@@ -1,6 +1,8 @@
 # supersnek
 Terminal-based snake game written in Python
 
+![Screenshot](https://raw.githubusercontent.com/shawnmcla/supersnek/master/screenshot.png)
+
 ## About
 Supersnek is a simple snake game for the Windows terminal environment. Support for other platforms coming soon ^tm
 
