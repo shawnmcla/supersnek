@@ -7,7 +7,13 @@ Supersnek is a simple snake game for the Windows terminal environment. Support f
 ## How to
 `python snek.py`
 
-Controls:
+###Options:
+```
+-d: Display debug info
+-nc: No color mode
+```
+
+###Controls:
 ```
 Movement: Arrow keys
 ```
@@ -15,4 +21,4 @@ Movement: Arrow keys
 ## Dependencies
 
 * Python 3
-* Colorama (will eventually drop dependency)
+* Colorama (will eventually drop dependency, not needed if using no color mode)
