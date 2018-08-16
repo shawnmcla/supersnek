@@ -86,7 +86,9 @@ class Game:
             key = ord(getch())
             if key == 224:  # Special keys
                 key = ord(getch())
-                self.snake.set_direction(DIRECTION_MAP[key])
+                if key in DIRECTION_MAP:
+                    self.snake.set_direction(DIRECTION_MAP[key])
+
         if not self.snake.update() or not self.board.update(self.snake):
             self.set_status_message(DEATH_MESSAGE)
             for _ in self.snake.death_anim():
@@ -105,8 +107,8 @@ class Game:
 
     def get_stats(self):
         return f"Snek head: {self.snake.get_head()} Q"\
-            f"{self.board.get_quadrant(self.snake.get_head())} |"\
-            f"Apples Nom'd: {self.snake.apples_eaten} |"\
+            f"{self.board.get_quadrant(self.snake.get_head())} | "\
+            f"Apples Nom'd: {self.snake.apples_eaten} | "\
             f"Snek length: {len(self.snake.segments)}"
 
     def draw(self):
